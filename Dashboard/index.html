@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-page="dashboard">
+    <header class="header">
+        <h1>Admin Portal</h1>
+        <div class="profile">
+            <span>Lavanya Mehrotra</span>
+            <img src="images/admin/img1.jpeg" alt="Profile Picture">
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <h2>Admin Menu</h2>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="movies.html">Manage Movies</a></li>
+            <li><a href="theaters.html">Manage Theaters</a></li>
+            <li><a href="bookings.html">View Bookings</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+            <li><a href="users.html">User Management</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <button class="hamburger-btn" onclick="toggleSidebar()">☰</button>
+        <div class="dashboard-content">
+            <h2>Welcome Back, Admin</h2>
+            <p>Your dashboard overview and key statistics are displayed below.</p>
+            <div class="stats-cards">
+                <div class="card">
+                    <h3>Total Movies</h3>
+                    <p>45</p>
+                </div>
+                <div class="card">
+                    <h3>Total Bookings</h3>
+                    <p>320</p>
+                </div>
+                <div class="card">
+                    <h3>Available Theaters</h3>
+                    <p>12</p>
+                </div>
+                <div class="card">
+                    <h3>Total Revenue</h3>
+                    <p>$12,500</p>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <ul>
+                    <li>New movie added: "Action Movie 2024"</li>
+                    <li>Booking confirmed: "Comedy Night" for 5th Dec</li>
+                    <li>Theater "Cinema Royale" updated seating capacity</li>
+                    <li>New user registered: John Doe</li>
+                </ul>
+            </div>
+            <div class="task-list">
+                <h3>Admin Task List</h3>
+                <ul>
+                    <li>Update Movie Listings</li>
+                    <li>Check Theater Availability</li>
+                    <li>Review Recent Bookings</li>
+                    <li>Prepare Analytics for Monthly Report</li>
+                </ul>
+            </div>
+            <div class="user-management">
+                <h3>User Management</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lavanya</td>
+                            <td>lavii@gmail.com</td>
+                            <td class="status">Active</td>
+                            <td><button onclick="toggleUserStatus(this)">Deactivate</button></td>
+                        </tr>
+                        <tr>
+                            <td>Roshni</td>
+                            <td>rosh@gmail.com</td>
+                            <td class="status">Inactive</td>
+                            <td><button onclick="toggleUserStatus(this)">Activate</button></td>
+                        </tr>
+                        <tr>
+                            <td>Khushi</td>
+                            <td>khushiii@gmail.com</td>
+                            <td class="status">Inactive</td>
+                            <td><button onclick="toggleUserStatus(this)">Activate</button></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="analytics">
+                <h3>Booking Trends</h3>
+                <canvas id="bookingChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        const ctx = document.getElementById('bookingChart').getContext('2d');
+        const bookingChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Bookings',
+                    data: [120, 150, 170, 190, 220, 240],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return '$' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

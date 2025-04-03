@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Theaters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Admin Portal</h1>
+    <div class="profile">
+        <span>Lavanya Mehrotra</span>
+        <img src="images/admin/img1.jpeg" alt="Profile Picture">
+    </div>
+  </header>
+
+  <div class="sidebar">
+    <h2>Admin Portal</h2>
+    <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="movies.html">Manage Movies</a></li>
+        <li><a href="theaters.html" class="active">Manage Theaters</a></li>
+        <li><a href="bookings.html">View Bookings</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>Manage Theaters</h1>
+    <form id="theaterForm">
+        <input type="text" id="theaterName" placeholder="Theater Name" required>
+        <input type="text" id="theaterLocation" placeholder="Location" required>
+        <button type="submit">Add Theater</button>
+    </form>
+
+    <div id="theatersList">
+        <h2>Theater List</h2>
+        <ul id="theaterListContainer"></ul>
+    </div>
+  </div>
+  <script src="js/theaters.js"></script>
+</body>
+</html>

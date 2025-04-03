@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Ticket Receipt</title>
+  
+  <!-- Google Font for a better design -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .receipt-container {
+      background-color: #fff;
+      width: 600px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      box-sizing: border-box;
+    }
+    
+    .receipt-header {
+      font-size: 36px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .divider {
+      border-top: 2px solid #eee;
+      margin: 20px 0;
+    }
+    
+    .receipt-details {
+      text-align: left;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    
+    .receipt-details span {
+      font-weight: bold;
+      color: #555;
+    }
+    
+    .receipt-details p {
+      margin: 8px 0;
+    }
+    
+    .thank-you {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #007bff;
+    }
+    
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+      text-align: center;
+    }
+    
+    .footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    .receipt-container .total {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="receipt-container">
+    <div class="receipt-header">
+      🎟 Movie Ticket Receipt
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="receipt-details">
+      <p><span>Movie:</span> ${movieDetails.name}</p>
+      <p><span>Show Time:</span> ${movieDetails.time}</p>
+      <p><span>Location:</span> ${movieDetails.location}</p>
+      <p><span>Seats:</span> ${selectedSeats.join(', ')}</p>
+    </div>
+
+    <div class="divider"></div>
+    
+    <div class="receipt-details">
+      <p><span>Name:</span> ${userDetails.name}</p>
+      <p><span>Email:</span> ${userDetails.email}</p>
+      <p><span>Contact:</span> ${userDetails.contact}</p>
+    </div>
+
+    <div class="divider"></div>
+    
+    <div class="total">
+      <p><span>Total Amount:</span> ₹${totalAmount}</p>
+    </div>
+
+    <div class="thank-you">
+      Thank you for your booking! We look forward to seeing you at the movie.
+    </div>
+
+    <div class="footer">
+      If you have any questions, please contact us at <a href="mailto:support@cinema.com">support@cinema.com</a>.
+    </div>
+  </div>
+  <!-- Assuming this is in a booking confirmation page -->
+<script>
+  function handleBookingSuccess(response) {
+      if (response.success) {
+          alert('Booking successful! Generating receipt...');
+          generateReceipt();
+      } else {
+          alert('Booking failed. Please try again.');
+      }
+  }
+
+  function generateReceipt() {
+      window.location.href = '/receipt';
+  }
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>

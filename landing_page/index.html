@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Movie-Mate</title>
+    <link rel="icon" type="image/x-icon" href="img/fav.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="assets/js/jquery.backstretch.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <style>
+        .search-btn {
+    background-color: #053147;
+    color: #fff;
+    border: none;
+    padding: 10px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 50%;
+}
+
+.search-btn:hover {
+    background-color: #0077cc;
+}
+
+    </style>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <nav class="sidenavbar">
+                <h1>Hey!</h1>
+            </nav>
+            <nav class="sidesubnavbar">
+                <img src="images/gift.avif">
+                <p>Unlock special offers & great benifits</p>
+                <button class="login" onclick="document.getElementById('id01').style.display='block'">Login / Register</button>
+            </nav>
+            <a href="#">
+                <div class="lefticon">
+                    <ion-icon name="notifications-outline"></ion-icon>
+                </div>
+                <div class="text">Notifications</div>
+                <div class="righticon">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </a>
+            <a class="btn-disabled" href="#">
+                <div class="lefticon">
+                    <ion-icon name="ticket-outline"></ion-icon>
+                </div>
+                <div class="text">Purchase History<br>
+                    <div class="subtext">View all your bookings & Purchases</div>
+                </div>
+                <div class="righticon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </div>
+            </a>
+            <a class="btn-disabled" href="#">
+                <div class="lefticon">
+                    <ion-icon name="tv-outline"></ion-icon>
+                </div>
+                <div class="text">Stream Library<br>
+                    <div class="subtext">Rented & Purchased Movies</div>
+                </div>
+                <div class="righticon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </div>
+            </a>
+            <a href="#">
+                <div class="lefticon">
+                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                </div>
+                <div class="text">Help & Support<br>
+                    <div class="subtext">View commonly asked queries and Chat</div>
+                </div>
+                <div class="righticon">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </a>
+            <a class="btn-disabled" href="#">
+                <div class="lefticon">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </div>
+                <div class="text">Accounts & Settings<br>
+                    <div class="subtext">Location, Payments, Addresses & More</div>
+                </div>
+                <div class="righticon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </div>
+            </a>
+            <a href="#">
+                <div class="lefticon">
+                    <ion-icon name="gift-outline"></ion-icon>
+                </div>
+                <div class="text">Rewards<br>
+                    <div class="subtext">View your rewards & unlock new ones</div>
+                </div>
+                <div class="righticon">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </a>
+            <a href="#">
+                <div class="lefticon">
+                    <ion-icon name="heart-outline"></ion-icon>
+                </div>
+                <div class="text">BookASmile</div>
+                <div class="righticon">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </a>
+        </nav>
+        <div class="overlay">
+
+        </div>
+        <div class="content">
+            <nav class="navbar">
+                <img src="images/banner/images.jpeg" class="brand-logo" alt="" />
+                <div class='input'>
+                    <ion-icon name="search" class="search-icon"></ion-icon>
+                    <input id="searchQuery" class="search-input" placeholder="Search for movies..." />
+                    <button class="search-btn" onclick="searchMovies()">Search</button>
+                    <div id="movieResults" class="movie-results">
+                        <!-- Search results will be displayed here -->
+                    </div>
+                </div>
+                <div class="right-container">
+                    <a href="#" class="location">Delhi<ion-icon name="caret-down-sharp"></ion-icon></a>
+                    <button class="signin" onclick="document.getElementById('id01').style.display='block'">Signin</button>
+                    <div id="id01" class="modal">
+                        <div class="modal-content">
+                            <div class="getstart">
+                                <h3>Get Started</h3>
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">
+                                <ion-icon name="close-outline"></ion-icon>
+                                </span>
+                            </div>
+                            <div class="container">
+                                <a href="/auth/google" class="button">
+                                    <div class="logo">
+                                        <img src="images/google.svg">
+                                    </div>
+                                    <div class="text">Continue with Google</div>
+                                </a>
+                                <a href="#" class="button" id="emailSignUpButton">
+                                    <div class="logo">
+                                        <ion-icon name="mail-outline" style="font-size: 22px;"></ion-icon>
+                                    </div>
+                                    <div class="text">Continue with Email</div>
+                                </a>
+                                <a href="/auth/apple" class="button">
+                                    <div class="logo">
+                                        <ion-icon name="logo-apple" style="font-size: 22px;"></ion-icon>
+                                    </div>
+                                    <div class="text">Continue with Apple</div>
+                                </a>
+                            </div>
+                            <h2>OR</h2>
+                            <form id="mobileSignUpForm"> 
+                            <div class="phone">
+                                <img alt="indian flag" src="images/india.svg">
+                                <div class="code">+91</div>
+                                <input id="mobileNo" type="tel" pattern="[0-9]*" placeholder="Continue with mobile number" class="mobileNo">
+                            </div>
+                            </form>
+                            <p>I agree to the <u>Terms & Conditions</u>&<u>Privacy Policy</u></p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-customized open-menu">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </a>
+                </div>
+            </nav>
+
+            <nav class="subnavbar">
+                <ul class='navitem'>
+                    <li><a href='movies.html'>Movies</a></li>
+                    <!-- <li><a href='stream.html'>Stream<span>NEW</span></a></li> -->
+                    <li><a href='events.html'>Events</a></li>
+                    <li><a href='plays.html'>Plays</a></li>
+                    <li><a href='sports.html'>Sports</a></li>
+                    <li><a href='activities.html'>Activities</a></li>
+                    <!-- <li><a href='buzz.html'>Buzz</a></li> -->
+                </ul>
+                <ul class='navitem1'>
+                    <li><a href='list_your_show.html'>ListYourShow<span>NEW</span></a></li>
+                    <li><a href='corporates.html'>Corporates</a></li>
+                    <!-- <li><a href='offers.html'>Offers</a></li> -->
+                    <li><a href='gift_cards.html'>Gift Cards</a></li>
+                </ul>
+            </nav>
+
+            <div class="carousel-container">
+                <div class="carousel">
+                </div>
+            </div>
+
+            <script src="js/data.js"></script>
+            <script src="js/app.js"></script>
+
+            <h1 class="title">Recommended Movies</h1>
+            <div class="movies-list" id="movie-list">
+                <div class="card-container">
+                    <div class="movie" >
+                        <div class="card"  style="height: 50%;">
+                            <a href="movie-details.html?movie=martin" target="_self" rel="noopener noreferrer">
+                                <img src="images/movies_poster/img1.avif" class="card-img" alt="Martin Movie Poster">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>6.1/10 &ThinSpace; 8.7K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Martin</h3>
+                        <p class="detail">Action/Drama/Thriller</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card" style="height: 50%">
+                            <a href="movies_detail_jigra.html" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img2.avif" class="card-img" alt="Jigra Movie Poster">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>7.8/10&ThinSpace; 45.5K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Jigra</h3>
+                        <p class="detail">Action/Drama/Thriller</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card" style="height: 50%">
+                            <a href="movies_details_vicky.html" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img3.avif" class="card-img" alt="Vicky Vidya Poster">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>7.1/10 &ThinSpace; 15.2K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Vickey Vidya ka vo wala...</h3>
+                        <p class="detail">Comedy/Drama/Period</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <a href="movie-details-ek.html" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img4.avif" class="card-img" alt="yek Number Poster">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>8/10 &ThinSpace; 6.3K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Yek Number</h3>
+                        <p class="detail">Drama/Political/Thriller</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <a href="movie-details-phullwant.html" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img5.avif" class="card-img" alt="Phullwanti Poster">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>8.7/10 &ThinSpace; 2.3K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Phullwanti</h3>
+                        <p class="detail">Drama/Period/Romantic</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <a href="movie-details-wild-robot.html" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img6.avif" class="card-img" alt="The Wild Robot">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p> &ThinSpace; 15.4k Likes</p>
+                            </div>
+                        </div>
+                        <h3>The Wild Robot</h3>
+                        <p class="detail">Adventure/Animation/Family</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <a href="movie-details.html?movie=Vettaiyan" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img7.avif" class="card-img" alt="Vettaiyan">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="thumbs-up-sharp" style="color: green;"></ion-icon>
+                                <p>3k likes</p>
+                            </div>
+                        </div>
+                        <h3>Vettaiyan</h3>
+                        <p class="detail">Drama/Action</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <a href="movie-details.html?movie=Dharamveer" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img8.avif" class="card-img" alt="Dharamveer">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>84% &ThinSpace; 226 votes</p>
+                            </div>
+                        </div>
+                        <h3>Dharamveer</h3>
+                        <p class="detail">Biography/Drama</p>
+                    </div>
+
+                    <!-- <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <a href="movie-details.html?movie=Devara" target="_self" rel="noopener noreferrer">
+                            <img src="images/movies_poster/img9.avif" class="card-img" alt="Devara Poster">
+                            </a>
+                            <div class="card-body">
+                                <ion-icon name="thumbs-up-sharp" style="color: green;"></ion-icon>
+                                <p>111 likes</p>
+                            </div>
+                        </div>
+                        <h3>Devara</h3>
+                        <p class="detail">Drama/Action/Thriller</p>
+                    </div> -->
+
+                </div>
+            </div>
+            <div id="movieResults" class="movie-results">
+                <!-- Search results will be displayed here -->
+            </div>
+
+            <div class="strip">
+                <img src="images/banner2/img1.avif" style="height:105px;" alt="">
+            </div>
+
+            <h1 class="title-enter">The Best of Entertainment</h1>
+            <div class="enter-list">
+                <div class="enter-container">
+
+                    <div class="card" >
+                        <img src="images/events/img1.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img2.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img3.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img4.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img5.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img6.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img7.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img7.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img8.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img9.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img3.avif" class="card-img" alt="">
+                    </div>
+
+                    <div class="card">
+                        <img src="images/events/img1.avif" class="card-img" alt="">
+                    </div>
+
+                </div>
+                
+
+        </div>
+        <br><br><br>
+        <div class="main">
+        <h1 class="title" style="color: white;  margin-right: 100px;">Premiers</h1>
+        <h6 style="color: white; margin-left: 80px; ">Brand new Release Every Friday</h6>
+        <br>
+        <div class="movies-listt">
+          <div class="card-container">
+
+              <div class="movie">
+                  <div class="card"  style="height: 50%">
+                    <a href="defenders.html" target="_self" rel="noopener noreferrer">
+                        <img src="images/priemiers/img1.avif" class="card-img" alt="">
+                    </a>
+                     
+                      <div class="card-body">
+                          <ion-icon name="heart-sharp"></ion-icon>
+                          <p>6.1/10 &ThinSpace; 8.7K Votes</p>
+                      </div>
+                  </div>
+                  <h3 style="color: white;">Defenders</h3>
+                  <p class="detail">English</p>
+              </div>
+
+              <div class="movie">
+                  <div class="card"  style="height: 50%">
+                    <a href="speak-no-evil.html" target="_self" rel="noopener noreferrer">
+                      <img src="images/priemiers/img2.avif" class="card-img" alt="">
+                      </a>
+                      <div class="card-body">
+                          <ion-icon name="heart-sharp"></ion-icon>
+                          <p>7.8/10&ThinSpace; 45.5K Votes</p>
+                      </div>
+                  </div>
+                  <h3 style="color: white;">Speak No Evil</h3>
+                  <p class="detail">English</p>
+              </div>
+
+              <div class="movie">
+                  <div class="card"  style="height: 50%">
+                    <a href="strange-darling.html" target="_self" rel="noopener noreferrer">
+                      <img src="images/priemiers/img3.avif" class="card-img" alt="">
+                    </a>
+                      <div class="card-body">
+                          <ion-icon name="heart-sharp"></ion-icon>
+                          <p>7.1/10 &ThinSpace; 15.2K Votes</p>
+                      </div>
+                  </div>
+                  <h3 style="color: white;" >Strange Darling</h3>
+                  <p class="detail">English</p>
+              </div>
+
+              <div class="movie">
+                  <div class="card"  style="height: 50%">
+                    <a href="yolo.html" target="_self" rel="noopener noreferrer">
+                      <img src="images/priemiers/img4.avif" class="card-img" alt="">
+                    </a>
+                      <div class="card-body">
+                          <ion-icon name="heart-sharp"></ion-icon>
+                          <p>8/10 &ThinSpace; 6.3K Votes</p>
+                      </div>
+                  </div>
+                  <h3 style="color: white;">Yolo</h3>
+                  <p class="detail">English</p>
+              </div>
+
+              <div class="movie">
+                  <div class="card"  style="height: 50%">
+                    <a href="the_line.html" target="_self" rel="noopener noreferrer">
+                      <img src="images/priemiers/img5.avif" class="card-img" alt="">
+                    </a>
+                      <div class="card-body">
+                          <ion-icon name="heart-sharp"></ion-icon>
+                          <p>8.7/10 &ThinSpace; 2.3K Votes</p>
+                      </div>
+                  </div>
+                  <h3 style="color: white;" >The Line </h3>
+                  <p class="detail">English</p>
+              </div>
+
+              <div class="movie">
+                  <div class="card"  style="height: 50%">
+                    <a href="bhagwaan-bharose.html" target="_self" rel="noopener noreferrer">
+                      <img src="images/priemiers/img6.avif" class="card-img" alt="">
+                    </a>
+                      <div class="card-body">
+                          <ion-icon name="heart-sharp"></ion-icon>
+                          <p> &ThinSpace; 15.4k Likes</p>
+                      </div>
+                  </div>
+                  <h3 style="color: white;">Bhagwaan Bharose</h3>
+                  <p class="detail">Hindi</p>
+              </div>
+
+              <div class="movie">
+                  <div class="card"  style="height: 50%">
+                    <a href="thesecaper.html" target="_self" rel="noopener noreferrer">
+                      <img src="images/priemiers/img7.avif" class="card-img" alt="">
+                      </a>
+
+                      <div class="card-body">
+                          <ion-icon name="thumbs-up-sharp" style="color: green;"></ion-icon>
+                          <p>3k likes</p>
+                      </div>
+                  </div>
+                  <h3 style="color: white;">The Escaper</h3>
+                  <p class="detail">Drama/Action</p>
+              </div>
+
+             
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <h1 class="title">Your Music Studio</h1>
+        <div class="movies-list">
+            <div class="card-container">
+              <div class="movie">
+                    <div class="card" style="height: 50%">
+                        <img src="images/your_music_studio/img1.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="heart-sharp"></ion-icon>
+                            <p>6.1/10 &ThinSpace; 8.7K Votes</p>
+                        </div>
+                    </div>
+                    <h3>Dance Your Style</h3>
+                    <p class="detail">Emotional</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img2.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="heart-sharp"></ion-icon>
+                            <p>7.8/10&ThinSpace; 45.5K Votes</p>
+                        </div>
+                    </div>
+                    <h3>Year of Legends</h3>
+                    <p class="detail">Imperfecto Patio</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img3.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="heart-sharp"></ion-icon>
+                            <p>7.1/10 &ThinSpace; 15.2K Votes</p>
+                        </div>
+                    </div>
+                    <h3>Sonu Nigam</h3>
+                    <p class="detail">Concert</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img4.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="heart-sharp"></ion-icon>
+                            <p>8/10 &ThinSpace; 6.3K Votes</p>
+                        </div>
+                    </div>
+                    <h3>Haazri</h3>
+                    <p class="detail">Dil mey samaa jaaa</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img5.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="heart-sharp"></ion-icon>
+                            <p>8.7/10 &ThinSpace; 2.3K Votes</p>
+                        </div>
+                    </div>
+                    <h3>Silhoutees tour</h3>
+                    <p class="detail">Prateek Kuhad</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img6.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="heart-sharp"></ion-icon>
+                            <p> &ThinSpace; 15.4k Likes</p>
+                        </div>
+                    </div>
+                    <h3>The Wild Robot</h3>
+                    <p class="detail">Adventure/Animation/Family</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img7.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="thumbs-up-sharp" style="color: green;"></ion-icon>
+                            <p>3k likes</p>
+                        </div>
+                    </div>
+                    <h3>Vettaiyan</h3>
+                    <p class="detail">Drama/Action</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img8.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="heart-sharp"></ion-icon>
+                            <p>84% &ThinSpace; 226 votes</p>
+                        </div>
+                    </div>
+                    <h3>Dharamveer</h3>
+                    <p class="detail">Biography/Drama</p>
+                </div>
+
+                <div class="movie">
+                    <div class="card"  style="height: 50%">
+                        <img src="images/your_music_studio/img9.avif" class="card-img" alt="">
+                        <div class="card-body">
+                            <ion-icon name="thumbs-up-sharp" style="color: green;"></ion-icon>
+                            <p>111 likes</p>
+                        </div>
+                    </div>
+                    <h3>Devara</h3>
+                    <p class="detail">Drama/Action/Thriller</p>
+                </div>
+              </div>
+            </div>
+            <h1 class="title">Outdoor Events</h1>
+            <div class="movies-list">
+                <div class="card-container">
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/outdoor events/img1.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>6.1/10 &ThinSpace; 8.7K Votes</p>
+                            </div>
+                        </div>
+                        <h3>National Street Food</h3>
+                        <p class="detail">JLN Stadium</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/outdoor events/img2.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>7.8/10&ThinSpace; 45.5K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Jo Bolta hai vhi Hota hai </h3>
+                        <p class="detail">Comedy Show</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/outdoor events/img3.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>7.1/10 &ThinSpace; 15.2K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Peppa Pig</h3>
+                        <p class="detail">Adventure</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/outdoor events/img4.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>8/10 &ThinSpace; 6.3K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Nehru Platinum New Delhi</h3>
+                        <p class="detail">New Delhi</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/outdoor events/img5.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>8.7/10 &ThinSpace; 2.3K Votes</p>
+                            </div>
+                        </div>
+                        <h3>Pkl</h3>
+                        <p class="detail">Match</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/outdoor events/img6.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p> &ThinSpace; 15.4k Likes</p>
+                            </div>
+                        </div>
+                        <h3>Rajadheraj</h3>
+                        <p class="detail">Music</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/your_music_studio/img7.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="thumbs-up-sharp" style="color: green;"></ion-icon>
+                                <p>3k likes</p>
+                            </div>
+                        </div>
+                        <h3>Vettaiyan</h3>
+                        <p class="detail">Drama/Action</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/your_music_studio/img8.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="heart-sharp"></ion-icon>
+                                <p>84% &ThinSpace; 226 votes</p>
+                            </div>
+                        </div>
+                        <h3>Dharamveer</h3>
+                        <p class="detail">Biography/Drama</p>
+                    </div>
+
+                    <div class="movie">
+                        <div class="card"  style="height: 50%">
+                            <img src="images/your_music_studio/img9.avif" class="card-img" alt="">
+                            <div class="card-body">
+                                <ion-icon name="thumbs-up-sharp" style="color: green;"></ion-icon>
+                                <p>111 likes</p>
+                            </div>
+                        </div>
+                        <h3>Devara</h3>
+                        <p class="detail">Drama/Action/Thriller</p>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="footer-message">
+                      <span id="footerText">List your Show </span>
+                      Got a show, event, activity or a great experience? Partner with us & get listed on MOVIE-MATE
+                      <a href="contact.html"><button id="buttonFooter" style="margin-left: 20%;">Contact today!</button></a>
+                </div>
+                <hr>
+            </footer>
+            <table>
+                <tr>
+                    <th>Navigate</th>
+                    <th>Help</th>
+                    <th>Top Movies and Events</th>
+                    <th>Newsletter</th>
+                </tr>
+                <tr>
+                    <td><a href="index.html" class="footerLinks">Home</a></td>
+                    <td><a href="#search" class="footerLinks">Search</a></td>
+                    <td><a href="yolo.html" class="footerLinks">yolo</a></td>
+                    <td rowspan="2">Get updates, news and specials before anyone else.</td>
+                </tr>
+                <tr>
+                    <td><a href="signup.html" class="footerLinks">Signup</a></td>
+                    <td><a href="quote.html" class="footerLinks">Get-a-Quote</a></td>
+                    <td><a href="movies_details_vicky.html" class="footerLinks">Vicky Vidya ka vo wala vedio</a></td>
+                </tr>
+                <tr>
+                    <td><a href="login.html" class="footerLinks">Log In</a></td>
+                    <td><a href="contact.html" class="footerLinks">Help</a></td>
+                    <td><a href="strange-darling.html" class="footerLinks">Strange Darling</a></td>
+                    <td rowspan="2">
+                        <input type="email" placeholder="Type your email here.." id="emailFooter">
+                        <button class="emailFooter">Subscribe</button>
+                </td>
+                </tr>
+                <tr>
+                    <td><a href="about.html" class="footerLinks">About</a></td>
+                    <td><a href="conditions.html" class="footerLinks">Terms & Conditions</a></td>
+                    <td><a href="movie-details.html" class="footerLinks">Martin</a></td>
+                </tr>
+                <tr>
+                    <td><a href="movies.html" class="footerLinks">Movies</a></td>
+                    <td></td>
+                    <td><a href="movies.html" class="footerLinks">The Invisible Man</a></td>
+                </tr>
+                <tr>
+                    <td><a href="contact.html" class="footerLinks">Contact</a></td>
+                    <td></td>
+                    <td><a href="movies.html" class="footerLinks">Underwater</a></td>
+                </tr>
+            </table>
+            <div class="footer"><hr></div>
+            <table>
+                <tr>
+                    <th>
+                    <p class="footer">Copyright &copy; 2020 All Rights Reserved by MOVIE-MATE</p>
+                    </th>
+                </tr>
+            </table>
+            <script>
+                 const searchBar = document.getElementById('search-bar');
+    const movieList = document.getElementById('movie-list');
+
+    // Fetch movies on search input change
+    searchBar.addEventListener('input', async () => {
+      const query = searchBar.value;
+
+      // Fetch the search results from the backend
+      const response = await fetch(`/api/search?query=${query}`);
+      const movies = await response.json();
+
+      // Render movies
+      movieList.innerHTML = '';
+      movies.forEach(movie => {
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('movie-card');
+        movieElement.innerHTML = `
+          <h3>${movie.title}</h3>
+          <p>${movie.description}</p>
+          <a href="movie-details.html?id=${movie._id}">More details</a>
+        `;
+        movieList.appendChild(movieElement);
+      });
+    });
+            </script>
+              <script src="js/search.js"></script>
+
+        </body>
+</html>

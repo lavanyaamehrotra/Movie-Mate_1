@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Movies - Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="movies">
+     <header class="header">
+        <h1>Admin Portal</h1>
+        <div class="profile">
+            <span>Lavanya Mehrotra</span>
+            <img src="images/admin/img1.jpeg" alt="Profile Picture">
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <h2>Admin Menu</h2>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="movies.html">Manage Movies</a></li>
+            <li><a href="theaters.html">Manage Theaters</a></li>
+            <li><a href="bookings.html">View Bookings</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+            <li><a href="users.html">User Management</a></li>
+        </ul>
+    </aside>
+    <main class="content">
+        <button class="hamburger-btn" onclick="toggleSidebar()">☰</button>
+
+        <div class="movie-content">
+            <h2>Manage Movies</h2>
+            <br>
+            <div class="movie-search">
+                <input type="text" id="search" placeholder="Search Movies..." onkeyup="filterMovies()">
+            </div>
+            <br><br>
+            <div class="add-movie">
+                <button id="addMovieButton">Add New Movie</button>
+            </div>
+            <div class="movie-list" id="movieList">
+            </div>
+            <div id="addMovieForm" class="add-movie-form" style="display: none;">
+                <h3>Add New Movie</h3>
+                <label for="movieTitle">Title:</label>
+                <input type="text" id="movieTitle" placeholder="Movie Title">
+                <label for="movieGenre">Genre:</label>
+                <input type="text" id="movieGenre" placeholder="Movie Genre">
+                <label for="movieReleaseDate">Release Date:</label>
+                <input type="date" id="movieReleaseDate">
+                <label for="movieImage">Image URL:</label>
+                <input type="text" id="movieImage" placeholder="Image URL">
+
+                <button onclick="addMovie()">Add Movie</button>
+                <button onclick="hideAddMovieForm()">Cancel</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+let movies = JSON.parse(localStorage.getItem('movies')) || [];
+function addMovie() {
+    const title = document.getElementById('movieTitle').value;
+    const genre = document.getElementById('movieGenre').value;
+    const releaseDate = document.getElementById('movieReleaseDate').value;
+    const image = document.getElementById('movieImage').value;
+
+    if (!title || !genre || !releaseDate || !image) {
+        alert('All fields are required!');
+        return;
+    }
+
+    const newMovie = {
+        id: Date.now(),
+        title,
+        genre,
+        releaseDate,
+        image
+    };
+
+    movies.push(newMovie);
+    localStorage.setItem('movies', JSON.stringify(movies));
+    displayMovies();
+    hideAddMovieForm();
+}
+
+function displayMovies() {
+    const movieList = document.getElementById('movieList');
+    movieList.innerHTML = ''; 
+
+    movies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie-card');
+        movieCard.id = `movie-card-${movie.id}`;
+
+        movieCard.innerHTML = `
+            <img src="${movie.image}" alt="Movie Poster">
+            <div class="movie-details">
+                <h3>${movie.title}</h3>
+                <p>Genre: ${movie.genre}</p>
+                <p>Release Date: ${movie.releaseDate}</p>
+            </div>
+            <button class="delete-btn" onclick="deleteMovie(${movie.id})">Delete</button>
+            <button class="edit-btn" onclick="editMovie(${movie.id})">Edit</button>
+        `;
+
+        movieList.appendChild(movieCard);
+    });
+}
+
+function deleteMovie(id) {
+    movies = movies.filter(movie => movie.id !== id);
+    localStorage.setItem('movies', JSON.stringify(movies));
+    displayMovies();
+}
+
+function editMovie(id) { 
+    const movie = movies.find(movie => movie.id === id);
+    if (movie) {
+        document.getElementById('movieTitle').value = movie.title;
+        document.getElementById('movieGenre').value = movie.genre;
+        document.getElementById('movieReleaseDate').value = movie.releaseDate;
+        document.getElementById('movieImage').value = movie.image;
+
+        const addMovieButton = document.querySelector('.add-movie-form button');
+        addMovieButton.innerText = 'Update Movie';
+        addMovieButton.onclick = function () {
+            updateMovie(id);
+        };
+        document.getElementById('addMovieForm').style.display = 'block';//to show form
+    }
+}
+
+function updateMovie(id) {
+    const updatedTitle = document.getElementById('movieTitle').value;
+    const updatedGenre = document.getElementById('movieGenre').value;
+    const updatedReleaseDate = document.getElementById('movieReleaseDate').value;
+    const updatedImage = document.getElementById('movieImage').value;
+
+    const movieIndex = movies.findIndex(movie => movie.id === id);
+
+    if (movieIndex > -1) {
+        movies[movieIndex] = {
+            id,
+            title: updatedTitle,
+            genre: updatedGenre,
+            releaseDate: updatedReleaseDate,
+            image: updatedImage
+        };
+
+        localStorage.setItem('movies', JSON.stringify(movies));
+        displayMovies();
+        hideAddMovieForm();
+    }
+}
+function filterMovies() {
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const filteredMovies = movies.filter(movie => {
+        return (
+            movie.title.toLowerCase().includes(searchTerm) ||
+            movie.genre.toLowerCase().includes(searchTerm)
+        );
+    });
+
+    const movieList = document.getElementById('movieList');
+    movieList.innerHTML = '';
+
+    filteredMovies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie-card');
+        movieCard.id = `movie-card-${movie.id}`;
+
+        movieCard.innerHTML = `
+            <img src="${movie.image}" alt="Movie Poster">
+            <div class="movie-details">
+                <h3>${movie.title}</h3>
+                <p>Genre: ${movie.genre}</p>
+                <p>Release Date: ${movie.releaseDate}</p>
+            </div>
+            <button class="delete-btn" onclick="deleteMovie(${movie.id})">Delete</button>
+            <button class="edit-btn" onclick="editMovie(${movie.id})">Edit</button>
+        `;
+
+        movieList.appendChild(movieCard);
+    });
+}
+function showAddMovieForm() {
+    document.getElementById('addMovieForm').style.display = 'block';
+}
+function hideAddMovieForm() {
+    document.getElementById('addMovieForm').style.display = 'none';
+    document.querySelector('.add-movie-form').reset();
+    const addMovieButton = document.querySelector('.add-movie-form button');
+    addMovieButton.innerText = 'Add Movie'; 
+    addMovieButton.onclick = addMovie;
+}
+
+window.onload = function () {
+    displayMovies();
+};
+
+document.getElementById('addMovieButton').addEventListener('click', showAddMovieForm);
+    </script>
+</body>
+</html>

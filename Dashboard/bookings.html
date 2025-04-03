@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bookings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.modal .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+    </style>
+  <header class="header">
+    <h1>Admin Portal</h1>
+    <div class="profile">
+        <span>Lavanya Mehrotra</span>
+        <img src="images/admin/img1.jpeg" alt="Profile Picture">
+    </div>
+  </header>
+
+  <div class="sidebar">
+    <h2>Admin Portal</h2>
+    <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="movies.html">Manage Movies</a></li>
+        <li><a href="theaters.html">Manage Theaters</a></li>
+        <li><a href="bookings.html" class="active">View Bookings</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>View Bookings</h1>
+    
+    <div class="filter-section">
+      <input type="text" id="searchBar" placeholder="Search by Customer Name or Booking ID">
+      <select id="filterTheater">
+        <option value="">Filter by Theater</option>
+        <option value="Theater 1">Theater 1</option>
+        <option value="Theater 2">Theater 2</option>
+      </select>
+      <select id="filterStatus">
+        <option value="">Filter by Status</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Pending">Pending</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+    
+    <div id="bookingsList">
+      <h2>Current Bookings</h2>
+      <table id="bookingTable">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Customer Name</th>
+            <th>Theater</th>
+            <th>Show Time</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="bookingListContainer"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Add Details</h2>
+      <form id="detailsForm">
+        <input type="text" id="seatNumbers" placeholder="Seat Numbers (e.g., A1, A2)" required>
+        <input type="text" id="paymentStatus" placeholder="Payment Status" required>
+        <button type="submit">Save Details</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/bookings.js"></script>
+</body>
+</html>

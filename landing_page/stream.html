@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <style>
+    .movie-container {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #121212;
+    padding: 20px;
+}
+
+.movie-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.movie-banner-image {
+    width: 40%;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
+}
+
+.movie-banner-details {
+    padding: 20px;
+    flex: 1;
+}
+
+.movie-label {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.movie-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.movie-info, .movie-language, .movie-description {
+    margin: 5px 0;
+}
+
+.pay-less-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 8px 12px;
+    background-color: #ff5252;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.premiere-section {
+    margin-top: 20px;
+}
+
+.premiere-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.premiere-movies {
+    display: flex;
+    gap: 10px;
+}
+
+.premiere-movie {
+    width: 100%;
+    max-width: 200px;
+}
+
+.premiere-movie-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+  </style>
+    <div class="movie-container">
+        <div class="movie-banner">
+            <img src="shazam-poster.jpg" alt="Shazam Poster" class="movie-banner-image">
+            <div class="movie-banner-details">
+                <span class="movie-label">Brand new releases every Friday</span>
+                <h1 class="movie-title">Shazam! Fury of the Gods</h1>
+                <p class="movie-info">2h 10m • Action, Adventure, Fantasy • 13+</p>
+                <p class="movie-language">English</p>
+                <p class="movie-description">
+                    Billy Batson and his foster siblings, who transform into superheroes by saying "Shazam!", are forced to fight the Daughters of Atlas, who are using a weapon that could destroy the world.
+                </p>
+            </div>
+            <button class="pay-less-button">PAY LESS NOW</button>
+        </div>
+        
+        <div class="premiere-section">
+            <h2 class="premiere-title">Premiere of the week</h2>
+            <div class="premiere-movies">
+                <div class="premiere-movie">
+                    <img src="laandhar.jpg" alt="Laandhar" class="premiere-movie-image">
+                </div>
+                <div class="premiere-movie">
+                    <img src="second-movie.jpg" alt="Second Movie" class="premiere-movie-image">
+                </div>
+                <div class="premiere-movie">
+                    <img src="third-movie.jpg" alt="In the Name of God" class="premiere-movie-image">
+                </div>
+                <div class="premiere-movie">
+                    <img src="treasure.jpg" alt="Treasure" class="premiere-movie-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

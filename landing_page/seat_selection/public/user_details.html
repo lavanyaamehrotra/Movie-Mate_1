@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Enter Your Details</h1>
+    <form id="user-form" action="/api/submit-details" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="mobile">Mobile Number:</label>
+      <input type="text" id="mobile" name="mobile" required pattern="[0-9]{10}" placeholder="10-digit number">
+      
+      <button type="submit">Proceed to Payment</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('user-details-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+  
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const seatNumbers = document.getElementById('seatNumbers').value.split(',').map(Number); // Ensure seat numbers are in array format
+  
+      try {
+        const response = await fetch('http://localhost:5501/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, seatNumbers }),
+        });
+  
+        const result = await response.json();
+        const messageDiv = document.getElementById('response-message');
+  
+        if (result.success) {
+          messageDiv.style.color = 'green';
+          messageDiv.textContent = 'Details submitted successfully!';
+        } else {
+          messageDiv.style.color = 'red';
+          messageDiv.textContent = result.message;
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        document.getElementById('response-message').textContent = 'An error occurred. Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>

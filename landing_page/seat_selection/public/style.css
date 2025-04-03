@@ -1,0 +1,225 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  /* background: linear-gradient(135deg, #74ebd5, #9face6); */
+  background-color: #051d37;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  
+}
+
+/* Container Styling */
+.container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+/* Header */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #4a4a4a;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+/* Seating Area */
+.seating-area {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  background: #4caf50;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Seat Hover Effect */
+.seat:hover {
+  transform: scale(1.1);
+  background: #45a049;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Occupied Seat */
+.seat.occupied {
+  background: #f44336;
+  cursor: not-allowed;
+  pointer-events: none; /* Prevent booking again */
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+/* Selected Seat */
+.seat.selected {
+  background: #2196f3;
+  transform: scale(1.1);
+}
+
+/* Summary Section */
+.summary {
+  font-size: 1rem;
+  margin-top: 20px;
+  color: #555;
+}
+
+.summary p {
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+/* Button Styling */
+#proceed-btn {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+#proceed-btn:hover {
+  background: linear-gradient(135deg, #0056b3, #003d80);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Fade-in Animation for Container */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+  .seating-area {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .seat {
+    width: 35px;
+    height: 35px;
+  }
+
+  #proceed-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+
+#user-details-form {
+  background-color: #ffffff;
+  padding: 30px; 
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-left: 80px;
+  min-height: 400px;
+  width: 500px 
+}
+
+#user-details-form h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#payment-details-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#payment-details-form label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+#payment-details-form input {
+  padding: 12px; /* Increased padding inside inputs */
+  font-size: 16px;
+  margin-bottom: 20px; /* Increased margin between inputs */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#payment-details-form input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+#confirm-details {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 24px; /* Increased padding */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#confirm-details:hover {
+  background-color: #45a049;
+}
+
+/* Button Styles */
+#proceed-btn {
+  background-color: #3399cc;
+  color: white;
+  padding: 12px 24px; /* Increased padding */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#proceed-btn:hover {
+  background-color: #007bb5;
+}
+
+/* Seating and Total Info */
+#selected-seats, #total-amount {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+}

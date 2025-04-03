@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <h1>Admin Portal</h1>
+    <div class="profile">
+        <span>Lavanya Mehrotra</span>
+        <img src="images/admin/img1.jpeg" alt="Profile Picture">
+    </div>
+</header>
+    <div class="sidebar">
+        <h2>Admin Portal</h2>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="movies.html">Manage Movies</a></li>
+            <li><a href="theaters.html">Manage Theaters</a></li>
+            <li><a href="bookings.html">View Bookings</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Analytics</h1>
+        <div class="summary">
+            <h2>Overview</h2>
+            <p>Total Movies: <span id="totalMovies">0</span></p>
+            <p>Total Theaters: <span id="totalTheaters">0</span></p>
+            <p>Total Bookings: <span id="totalBookings">0</span></p>
+            <p>Total Earnings: <span id="totalEarnings">$0</span></p>
+        </div>
+        <div class="charts">
+            <div class="chart-container">
+                <h3>Bookings by Day</h3>
+                <canvas id="dailyBookingsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Bookings by Week</h3>
+                <canvas id="weeklyBookingsChart"></canvas>
+            </div>
+        </div>
+        <div class="summary">
+            <h2>Top 5 Movies by Bookings</h2>
+            <ul id="topMoviesList">
+            </ul>
+        </div>
+        <div class="chart-container">
+            <h3>Performance Over Time</h3>
+            <canvas id="performanceChart"></canvas>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>
